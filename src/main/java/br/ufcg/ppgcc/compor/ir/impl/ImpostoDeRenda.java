@@ -7,8 +7,11 @@ public class ImpostoDeRenda implements FachadaExperimento {
 
 	private List<Titular> titulares = new ArrayList<Titular>();
 	
+	
 	public void criarNovoTitular(Titular titular) {
-		
+		if (titular.getNome() == null) {
+			throw new ExcecaoImpostoDeRenda("porra");
+		}
 		titulares.add(titular);
 	}
 
