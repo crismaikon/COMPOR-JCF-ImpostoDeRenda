@@ -10,17 +10,43 @@ public class ImpostoDeRenda implements FachadaExperimento {
 	
 	public void criarNovoTitular(Titular titular) {
 		if (titular.getNome() == null) {
-			throw new ExcecaoImpostoDeRenda("Usuario sem nome");
+			try {
+				throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
+			} catch (Exception e) {
+				throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
+			}
 		}
 		if(titular.getCpf() == null){
-			throw new ExcecaoImpostoDeRenda("Usuario sem cpf");
+			try {
+				throw new ExcecaoImpostoDeRenda("O campo CPF é obrigatório");
+			} catch (Exception e) {
+				throw new ExcecaoImpostoDeRenda("O campo CPF é obrigatório");
+			}
 		}
+		if(titular.getCpf() != "000.000.000-00"){
+			try {
+				throw new ExcecaoImpostoDeRenda("O campo CPF está inválido");
+			} catch (Exception e) {
+				throw new ExcecaoImpostoDeRenda("O campo CPF está inválido");
+			}
+		}
+		
+		
 		titulares.add(titular);
 	}
 
 	public List<Titular> listarTitulares() {
 		
 		return titulares;
+	}
+	
+	public boolean verificaCpfInvalido(Titular titular){
+		for(Titular a : titulares){
+			if(a.getCpf() == titular.getCpf()){
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
