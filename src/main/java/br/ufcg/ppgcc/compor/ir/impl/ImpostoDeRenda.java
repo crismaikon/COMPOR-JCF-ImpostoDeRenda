@@ -10,7 +10,10 @@ public class ImpostoDeRenda implements FachadaExperimento {
 	
 	public void criarNovoTitular(Titular titular) {
 		if (titular.getNome() == null) {
-			throw new ExcecaoImpostoDeRenda("porra");
+			throw new ExcecaoImpostoDeRenda("Usuario sem nome");
+		}
+		if(titular.getCpf() == null){
+			throw new ExcecaoImpostoDeRenda("Usuario sem cpf");
 		}
 		titulares.add(titular);
 	}
