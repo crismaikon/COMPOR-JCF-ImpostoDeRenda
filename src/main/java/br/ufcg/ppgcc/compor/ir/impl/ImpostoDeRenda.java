@@ -8,29 +8,19 @@ public class ImpostoDeRenda implements FachadaExperimento {
 
 	private List<Titular> titulares = new ArrayList<Titular>();
 	private List<FontePagadora> fontePagadores = new ArrayList<FontePagadora>();
+	
 	private Map<Titular, FontePagadora> fontePagadoras = new HashMap<Titular, FontePagadora>();
 
 	public void criarNovoTitular(Titular titular) {
 		if (titular.getNome() == null) {
-			try {
 				throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
-			} catch (Exception e) {
-				throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
-			}
 		}
 		if (titular.getCpf() == null) {
-			try {
-				throw new ExcecaoImpostoDeRenda("O campo CPF é obrigatório");
-			} catch (Exception e) {
-				throw new ExcecaoImpostoDeRenda("O campo CPF é obrigatório");
-			}
+			throw new ExcecaoImpostoDeRenda("O campo CPF é obrigatório");
 		}
-		if (titular.getCpf() != "000.000.000-00") {
-			try {
-				throw new ExcecaoImpostoDeRenda("O campo CPF está inválido");
-			} catch (Exception e) {
-				throw new ExcecaoImpostoDeRenda("O campo CPF está inválido");
-			}
+
+		if (titular.getCpf().matches("\\d\\d\\d.\\d\\d\\d.\\d\\d\\d-\\d\\d") == false) {
+			throw new ExcecaoImpostoDeRenda("O campo CPF está inválido");
 		}
 
 		titulares.add(titular);
@@ -51,6 +41,7 @@ public class ImpostoDeRenda implements FachadaExperimento {
 	}
 
 	public void criarFontePagadora(Titular titular, FontePagadora fonte) {
+		fontePagadoras.put(titular, fonte);
 		fontePagadores.add(fonte);
 
 	}
