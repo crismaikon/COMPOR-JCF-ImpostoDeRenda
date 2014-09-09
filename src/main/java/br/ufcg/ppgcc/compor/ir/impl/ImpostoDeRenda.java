@@ -7,12 +7,11 @@ import br.ufcg.ppgcc.compor.ir.*;
 public class ImpostoDeRenda implements FachadaExperimento {
 
 	private List<Titular> titulares = new ArrayList<Titular>();
-	private List<FontePagadora> fontes = new ArrayList<FontePagadora>();
-	private Map<Titular,List<FontePagadora>> fontePagadoras = new HashMap<Titular,List<FontePagadora>>();
+	private Map<Titular, List<FontePagadora>> fontePagadoras = new HashMap<Titular, List<FontePagadora>>();
 
 	public void criarNovoTitular(Titular titular) {
 		if (titular.getNome() == null) {
-				throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
+			throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
 		}
 		if (titular.getCpf() == null) {
 			throw new ExcecaoImpostoDeRenda("O campo CPF é obrigatório");
@@ -23,6 +22,7 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		}
 
 		titulares.add(titular);
+		fontePagadoras.put(titular, new ArrayList<FontePagadora>());
 	}
 
 	public List<Titular> listarTitulares() {
@@ -31,20 +31,15 @@ public class ImpostoDeRenda implements FachadaExperimento {
 	}
 
 	public void criarFontePagadora(Titular titular, FontePagadora fonte) {
-		
-		if (fontePagadoras.containsKey(titular)){
-			List<FontePagadora> font = fontePagadoras.get(titular);
-			font.add(fonte);
-			
-		}
-		fontes.add(fonte);
-		fontePagadoras.put(titular, fontes);
 
+		if (fontePagadoras.containsKey(titular)) {
+			List<FontePagadora> listFont = fontePagadoras.get(titular);
+			listFont.add(fonte);
+		}
 	}
 
 	public List<FontePagadora> listarFontes(Titular titular) {
-
-		return fontes;
+		return fontePagadoras.get(titular);
 	}
 
 }
