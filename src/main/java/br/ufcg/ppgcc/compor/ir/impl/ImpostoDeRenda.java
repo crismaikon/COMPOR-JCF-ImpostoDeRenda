@@ -8,7 +8,8 @@ public class ImpostoDeRenda implements FachadaExperimento {
 
 	private List<Titular> titulares = new ArrayList<Titular>();
 	private Map<Titular, List<FontePagadora>> fontePagadoras = new HashMap<Titular, List<FontePagadora>>();
-
+	private Map<Titular, List<Dependente>> dependentes = new HashMap<Titular, List<Dependente>>();
+	
 	public void criarNovoTitular(Titular titular) {
 		if (titular.getNome() == null) {
 			throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
@@ -23,6 +24,7 @@ public class ImpostoDeRenda implements FachadaExperimento {
 
 		titulares.add(titular);
 		fontePagadoras.put(titular, new ArrayList<FontePagadora>());
+		dependentes.put(titular, new ArrayList<Dependente>());
 	}
 
 	public List<Titular> listarTitulares() {
@@ -64,6 +66,18 @@ public class ImpostoDeRenda implements FachadaExperimento {
 
 	public List<FontePagadora> listarFontes(Titular titular) {
 		return fontePagadoras.get(titular);
+	}
+
+	public void criarDependente(Titular titular, Dependente dependente) {
+		if(dependentes.containsKey(titular)){
+			List<Dependente> listDependente = dependentes.get(titular);
+			listDependente.add(dependente);
+		}
+		
+	}
+
+	public List<Dependente> listarDependentes(Titular titular) {
+		return dependentes.get(titular);
 	}
 
 }
