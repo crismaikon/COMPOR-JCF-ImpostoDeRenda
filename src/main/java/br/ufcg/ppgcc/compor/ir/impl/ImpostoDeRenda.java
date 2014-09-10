@@ -94,15 +94,17 @@ public class ImpostoDeRenda implements FachadaExperimento {
 			listDependente.add(dependente);
 		}
 		
-		
-		
-		
-		
-		
 	}
 
 	public List<Dependente> listarDependentes(Titular titular) {
 		return dependentes.get(titular);
+	}
+	
+	public Resultado declaracaoCompleta(Titular titular) {
+		Resultado resultado = new Resultado();
+		resultado.getImpostoDevido();
+		
+		return resultado ;
 	}
 
 }
