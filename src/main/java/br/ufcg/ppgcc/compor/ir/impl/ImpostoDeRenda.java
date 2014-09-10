@@ -31,7 +31,8 @@ public class ImpostoDeRenda implements FachadaExperimento {
 	}
 
 	public void criarFontePagadora(Titular titular, FontePagadora fonte) {
-
+		String cnpj = "\\d\\d.\\d\\d\\d.\\d\\d\\d"+"/"+"\\d\\d\\d\\d-\\d\\d";
+	
 		if(fonte.getNome() == null){
 			throw new ExcecaoImpostoDeRenda("O campo nome é obrigatório");
 		}
@@ -45,6 +46,10 @@ public class ImpostoDeRenda implements FachadaExperimento {
 			throw new ExcecaoImpostoDeRenda("O campo rendimentos recebidos deve ser maior que zero");
 			
 		}
+		if(fonte.getCpfCnpj().matches(cnpj)==false){
+			throw new ExcecaoImpostoDeRenda("O campo CPF/CNPJ é inválido");
+		}
+				
 		
 		if(fontePagadoras.containsKey(titular)) {
 			List<FontePagadora> listFont = fontePagadoras.get(titular);
