@@ -49,6 +49,9 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		if(fonte.getCpfCnpj().matches(cnpj)==false){
 			throw new ExcecaoImpostoDeRenda("O campo CPF/CNPJ é inválido");
 		}
+		if(fontePagadoras.containsKey(titular) == false){
+			throw new ExcecaoImpostoDeRenda("Titular não cadastrado");
+		}
 				
 		
 		if(fontePagadoras.containsKey(titular)) {
