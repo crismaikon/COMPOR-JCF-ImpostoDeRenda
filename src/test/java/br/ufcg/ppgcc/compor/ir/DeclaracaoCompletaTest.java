@@ -6,6 +6,8 @@ import static br.ufcg.ppgcc.compor.ir.FontePagadoraHelper.criarFontePagadoraPorR
 import org.junit.Before;
 import org.junit.Test;
 
+import br.ufcg.ppgcc.compor.ir.impl.ImpostoDeRenda;
+
 public class DeclaracaoCompletaTest {
 
 	private FachadaExperimento fachada;
@@ -51,6 +53,7 @@ public class DeclaracaoCompletaTest {
 
 		Titular titular3 = TitularHelper.criarTitularMinimo();
 		cadastrarCalcularImpostoDevido(701.6, titular3, 15000, 14000);
+		
 	}
 
 	@Test
