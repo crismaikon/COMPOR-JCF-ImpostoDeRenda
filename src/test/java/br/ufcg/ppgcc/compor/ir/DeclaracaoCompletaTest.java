@@ -6,12 +6,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-<<<<<<< HEAD
 import br.ufcg.ppgcc.compor.ir.impl.ImpostoDeRenda;
 
-
-=======
->>>>>>> T.04.10
 public class DeclaracaoCompletaTest {
 
 	private FachadaExperimento fachada;
