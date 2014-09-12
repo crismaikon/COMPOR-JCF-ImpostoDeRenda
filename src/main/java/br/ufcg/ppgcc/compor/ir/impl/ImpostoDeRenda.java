@@ -107,9 +107,13 @@ public class ImpostoDeRenda implements FachadaExperimento {
 		double aliquota = 0, parcelaDeducao = 0, impostoDevido = 0;
 		Resultado resultado = new Resultado();
 		double somatorioRendimentos = 0;
+		
 		for (FontePagadora fp : listarFontes(titular)) {
 			somatorioRendimentos += fp.getRendimentoRecebidos();
 		}
+		double deducaoPorDependente = 1974.72 * dependentes.get(titular).size();
+		somatorioRendimentos -= deducaoPorDependente;
+		
 		if (somatorioRendimentos < 19645.33) {
 			aliquota = 0;
 			parcelaDeducao = 0;
